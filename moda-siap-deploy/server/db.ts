@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import bcrypt from 'bcryptjs';
+import { INIT_MIGRATION_SQL } from './migrationSql.ts';
 import {
   ALLOWED_TEMPLATE_PLACEHOLDERS,
   DEFAULT_WHATSAPP_TEMPLATE,
@@ -38,9 +39,7 @@ export function runInTransaction<T>(fn: () => T): T {
 }
 
 export function initializeDatabase(): void {
-  const migrationPath = path.resolve(process.cwd(), 'db/migrations/001_init.sql');
-  const migrationSql = fs.readFileSync(migrationPath, 'utf-8');
-  db.exec(migrationSql);
+  db.exec(INIT_MIGRATION_SQL);
 
   // Safe incremental migration for existing SQLite databases
   const orderCols = db.prepare(`PRAGMA table_info(orders)`).all() as Array<{ name: string }>;
