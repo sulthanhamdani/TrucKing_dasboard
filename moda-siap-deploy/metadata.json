@@ -1,0 +1,8 @@
+{
+  "name": "TrucKing Transporter System",
+  "description": "Dashboard monitoring kinerja transporter berbasis KPI & AHP serta manajemen operasional order dan WhatsApp Click-to-Chat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
